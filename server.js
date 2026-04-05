@@ -5,7 +5,7 @@ import 'dotenv/config';
 
 const app = express();
 import bodyParser from 'body-parser';
-const port = process.env.PORT || 3005;
+const port = process.env.PORT || 3000;
 app.use(cors());
 // app.use(bodyParser.json());
 app.use(express.json());
@@ -13,11 +13,20 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 
 const pool = new postgresPool({
-  user: "postgres",
+  // user: "postgres",
+  // password: process.env.DB_PASSWORD,
+  // database: "student_master",
+  // host: "localhost",
+  // port: 5432,
+  // max: 10
+  user: process.env.DB_USER,
   password: process.env.DB_PASSWORD,
-  database: "student_master",
-  host: "localhost",
-  port: 5432,
+  database: process.env.DB_NAME,
+  host: process.env.DB_HOST,
+  port: process.env.DB_PORT,
+  ssl: {
+    rejectUnauthorized: false
+  },
   max: 10
 });
 
