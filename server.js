@@ -30,15 +30,6 @@ const pool = new postgresPool({
   max: 10
 });
 
-// pool.connect((err, connection) => {
-//   if (err) {
-//     console.error('Connection error:', err.message);
-//     return;
-//   }
-//   console.log('Connected to student_master DB ^_^');
-//   connection.release(); // Освобождава клиента обратно в пула
-// });
-// Тест за връзката при стартиране
 pool.query('SELECT NOW()', (err, result) => {
   if (err) { console.error('Database connection error:', err.message); }
   else { console.log('Connected to student_master DB ^_^'); }
